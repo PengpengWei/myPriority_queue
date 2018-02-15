@@ -22,7 +22,7 @@ private:
 								//如果空链表块链为空，先检查m_volumn * 2是否大于MAX_LEN，如果大于，则扩容非法，返回-1
 								//否则进行扩容，建立m_volumn个空链表Node，然后更新m_volumn变量，返回0.
 public:
-	Priority_Linklist(int initial_volumn = INITIAL_VOLUMN);
+	Priority_Linklist(int initial_volumn = DEFAULT_INITIAL_VOLUMN);
 								//待定义的构造函数，需要完成以下工作：
 								//1.确定一个初始容量initial_volumn
 								//2.让空链表头和满链表头的p域和n域都指向自身
