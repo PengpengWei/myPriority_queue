@@ -1,49 +1,49 @@
-#pragma once
-#define MAX_LEN 100000	//Á´±í×î´óÈÝÐí³¤¶È
-#define DEFAULT_INITIAL_VOLUMN 100	//Ä¬ÈÏ³õÊ¼»¯Á´±íÈÝÁ¿
+ï»¿#pragma once
+#define MAX_LEN 100000	//é“¾è¡¨æœ€å¤§å®¹è®¸é•¿åº¦
+#define DEFAULT_INITIAL_VOLUMN 100	//é»˜è®¤åˆå§‹åŒ–é“¾è¡¨å®¹é‡
 
-//ÒÔÏÂµÄclass TÓ¦µ±¾ß±¸´óÐ¡¹ØÏµµÄ¡¢¿É±È½ÏµÄ
+//ä»¥ä¸‹çš„class Tåº”å½“å…·å¤‡å¤§å°å…³ç³»çš„ã€å¯æ¯”è¾ƒçš„
 template <class T>
 struct Node {
 	T data;
-	Node *previous;		//Ö¸ÏòÇ°Ò»¸ö½áµã
-	Node *next;			//Ö¸ÏòºóÒ»¸ö½áµã
+	Node *previous;		//æŒ‡å‘å‰ä¸€ä¸ªç»“ç‚¹
+	Node *next;			//æŒ‡å‘åŽä¸€ä¸ªç»“ç‚¹
 };
 
 template <class T>
 class Priority_Linklist {
 private:
-	Node empty_list_h;			//¿ÕÁ´±íÍ·£¬±íÍ·±¾Éí²»¼ÆÈë±í³¤£¬²»ÓÃ×÷Êý¾Ý¼ÇÂ¼¡£×¢ÒâËü²»ÊÇÖ¸Õë¡£
-	Node full_list_h;			//ÂúÁ´±íÍ·£¬±íÍ·±¾Éí²»¼ÆÈë±í³¤£¬²»ÓÃ×÷Êý¾Ý¼ÇÂ¼¡£×¢ÒâËü²»ÊÇÖ¸Õë¡£
+	Node empty_list_h;			//ç©ºé“¾è¡¨å¤´ï¼Œè¡¨å¤´æœ¬èº«ä¸è®¡å…¥è¡¨é•¿ï¼Œä¸ç”¨ä½œæ•°æ®è®°å½•ã€‚æ³¨æ„å®ƒä¸æ˜¯æŒ‡é’ˆã€‚
+	Node full_list_h;			//æ»¡é“¾è¡¨å¤´ï¼Œè¡¨å¤´æœ¬èº«ä¸è®¡å…¥è¡¨é•¿ï¼Œä¸ç”¨ä½œæ•°æ®è®°å½•ã€‚æ³¨æ„å®ƒä¸æ˜¯æŒ‡é’ˆã€‚
 	int m_size;
 	int m_volumn;
 
-	int increment();			//¹«¹²º¯Êýpush()ÐèÒªÊ¹ÓÃµÄ·½·¨
-								//Èç¹û¿ÕÁ´±í¿éÁ´Îª¿Õ£¬ÏÈ¼ì²ém_volumn * 2ÊÇ·ñ´óÓÚMAX_LEN£¬Èç¹û´óÓÚ£¬ÔòÀ©ÈÝ·Ç·¨£¬·µ»Ø-1
-								//·ñÔò½øÐÐÀ©ÈÝ£¬½¨Á¢m_volumn¸ö¿ÕÁ´±íNode£¬È»ºó¸üÐÂm_volumn±äÁ¿£¬·µ»Ø0.
+	int increment();			//å…¬å…±å‡½æ•°push()éœ€è¦ä½¿ç”¨çš„æ–¹æ³•
+								//å¦‚æžœç©ºé“¾è¡¨å—é“¾ä¸ºç©ºï¼Œå…ˆæ£€æŸ¥m_volumn * 2æ˜¯å¦å¤§äºŽMAX_LENï¼Œå¦‚æžœå¤§äºŽï¼Œåˆ™æ‰©å®¹éžæ³•ï¼Œè¿”å›ž-1
+								//å¦åˆ™è¿›è¡Œæ‰©å®¹ï¼Œå»ºç«‹m_volumnä¸ªç©ºé“¾è¡¨Nodeï¼Œç„¶åŽæ›´æ–°m_volumnå˜é‡ï¼Œè¿”å›ž0.
 public:
 	Priority_Linklist(int initial_volumn = INITIAL_VOLUMN);
-								//´ý¶¨ÒåµÄ¹¹Ôìº¯Êý£¬ÐèÒªÍê³ÉÒÔÏÂ¹¤×÷£º
-								//1.È·¶¨Ò»¸ö³õÊ¼ÈÝÁ¿initial_volumn
-								//2.ÈÃ¿ÕÁ´±íÍ·ºÍÂúÁ´±íÍ·µÄpÓòºÍnÓò¶¼Ö¸Ïò×ÔÉí
-								//3.¶Ô¿ÕÁ´±íÍ·µÄnÓò£ºÎªnÓòÉêÇë¿Õ¼ä£¬È»ºóÎªnÓòÖ¸Ïò½áµãµÄnÓòÉêÇë¿Õ¼ä£¬ÒÔ´ËÀàÍÆ£¬Ö±ÖÁ¸öÊýÂú×ãÒªÇó
-								//4.µ÷Õû¿ÕÁ´±í£¬Ê¹¸÷Ö¸ÕëÕýÈ·×÷ÓÃ¡£Ö÷ÒªÊÇµ÷Õû¿ÕÁ´±íµÄpÓò¡£
-								//5.ÌîÐ´m_size=0, m_volumn=initial_volumn.
+								//å¾…å®šä¹‰çš„æž„é€ å‡½æ•°ï¼Œéœ€è¦å®Œæˆä»¥ä¸‹å·¥ä½œï¼š
+								//1.ç¡®å®šä¸€ä¸ªåˆå§‹å®¹é‡initial_volumn
+								//2.è®©ç©ºé“¾è¡¨å¤´å’Œæ»¡é“¾è¡¨å¤´çš„påŸŸå’ŒnåŸŸéƒ½æŒ‡å‘è‡ªèº«
+								//3.å¯¹ç©ºé“¾è¡¨å¤´çš„nåŸŸï¼šä¸ºnåŸŸç”³è¯·ç©ºé—´ï¼Œç„¶åŽä¸ºnåŸŸæŒ‡å‘ç»“ç‚¹çš„nåŸŸç”³è¯·ç©ºé—´ï¼Œä»¥æ­¤ç±»æŽ¨ï¼Œç›´è‡³ä¸ªæ•°æ»¡è¶³è¦æ±‚
+								//4.è°ƒæ•´ç©ºé“¾è¡¨ï¼Œä½¿å„æŒ‡é’ˆæ­£ç¡®ä½œç”¨ã€‚ä¸»è¦æ˜¯è°ƒæ•´ç©ºé“¾è¡¨çš„påŸŸã€‚
+								//5.å¡«å†™m_size=0, m_volumn=initial_volumn.
 
-	~Priority_Linklist();		//´ý¶¨ÒåµÄÎö¹¹º¯Êý
+	~Priority_Linklist();		//å¾…å®šä¹‰çš„æžæž„å‡½æ•°
 
-	T top();					//·µ»ØÂúÁ´±í¿éÁ´µÄÁ´Í·
+	T top();					//è¿”å›žæ»¡é“¾è¡¨å—é“¾çš„é“¾å¤´
 
-	int push(T element);		//´Ó¿ÕÁ´±íÁ´ÖÐÈ¡³öÒ»¸ö¿ÕÁ´±í¿é£¬°Ñelement¿½±´µ½Á´±í¿éµÄdÓòºó£¬½«ËüÒÆ¶¯µ½ÂúÁ´±í¶ÓÁÐµÄÇ¡µ±Î»ÖÃ
-								//Èç¹û¿ÕÁ´±í¶ÓÁÐÎª¿Õ£¬Ôòµ÷ÓÃincrement()À©ÈÝ
-								//Èç¹ûÔªËØ²åÈëÊ§°Ü£¬·µ»Ø-1.³É¹¦²åÈë,m_size++, ·µ»Ø0.
+	int push(T element);		//ä»Žç©ºé“¾è¡¨é“¾ä¸­å–å‡ºä¸€ä¸ªç©ºé“¾è¡¨å—ï¼ŒæŠŠelementæ‹·è´åˆ°é“¾è¡¨å—çš„dåŸŸåŽï¼Œå°†å®ƒç§»åŠ¨åˆ°æ»¡é“¾è¡¨é˜Ÿåˆ—çš„æ°å½“ä½ç½®
+								//å¦‚æžœç©ºé“¾è¡¨é˜Ÿåˆ—ä¸ºç©ºï¼Œåˆ™è°ƒç”¨increment()æ‰©å®¹
+								//å¦‚æžœå…ƒç´ æ’å…¥å¤±è´¥ï¼Œè¿”å›ž-1.æˆåŠŸæ’å…¥,m_size++, è¿”å›ž0.
 
-	int pop(T element);			//É¾³ýÂúÁ´±íÁ´µÄÁ´Í·£¬size--
-								//Èç¹ûÔ­±¾ÂúÁ´±íÁ´¾ÍÎª¿Õ£¬Ôò·µ»Ø-1£¬·ñÔò·µ»Ø0.
+	int pop(T element);			//åˆ é™¤æ»¡é“¾è¡¨é“¾çš„é“¾å¤´ï¼Œsize--
+								//å¦‚æžœåŽŸæœ¬æ»¡é“¾è¡¨é“¾å°±ä¸ºç©ºï¼Œåˆ™è¿”å›ž-1ï¼Œå¦åˆ™è¿”å›ž0.
 
-	bool empty();				//Èç¹ûÂúÁ´±íÁ´Îª¿Õ£¬Ôò·µ»Øtrue£¬·ñÔò·µ»Øfalse.
+	bool empty();				//å¦‚æžœæ»¡é“¾è¡¨é“¾ä¸ºç©ºï¼Œåˆ™è¿”å›žtrueï¼Œå¦åˆ™è¿”å›žfalse.
 
-	void swap(Priority_Linklist<T> other);	//½»»»Á½Á´±í¶ÔÏó¡£Èç¹ûÓÃ²»µ½£¬¿ÉÒÔ²»ÊµÏÖÕâÒ»·½·¨¡££¨Ö±½Ó·µ»Ø£©
+	void swap(Priority_Linklist<T> other);	//äº¤æ¢ä¸¤é“¾è¡¨å¯¹è±¡ã€‚å¦‚æžœç”¨ä¸åˆ°ï¼Œå¯ä»¥ä¸å®žçŽ°è¿™ä¸€æ–¹æ³•ã€‚ï¼ˆç›´æŽ¥è¿”å›žï¼‰
 
 	int size() { return(m_size); }
 	int volumn() { return(m_volumn); }
