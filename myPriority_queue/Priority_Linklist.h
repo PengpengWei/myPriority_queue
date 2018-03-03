@@ -38,7 +38,7 @@ public:
 								//如果空链表队列为空，则调用increment()扩容
 								//如果元素插入失败，返回-1.成功插入,m_size++, 返回0.
 
-	int pop(T element);			//删除满链表链的链头，size--
+	int pop();					//删除满链表链的链头，size--
 								//如果原本满链表链就为空，则返回-1，否则返回0.
 
 	bool empty();				//如果满链表链为空，则返回true，否则返回false.
