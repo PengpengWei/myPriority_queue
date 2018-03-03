@@ -43,7 +43,7 @@ public:
 
 	bool empty();				//如果满链表链为空，则返回true，否则返回false.
 
-	void swap(Priority_Linklist<T> other);	//交换两链表对象。如果用不到，可以不实现这一方法。（直接返回）
+	void swap(Priority_Linklist<T> &other);	//交换两链表对象。如果用不到，可以不实现这一方法。（直接返回）
 
 	int size() { return(m_size); }
 	int volumn() { return(m_volumn); }
