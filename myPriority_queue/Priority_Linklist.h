@@ -13,8 +13,8 @@ struct Node {
 template <class T>
 class Priority_Linklist {
 private:
-	Node empty_list_h;			//空链表头，表头本身不计入表长，不用作数据记录。注意它不是指针。
-	Node full_list_h;			//满链表头，表头本身不计入表长，不用作数据记录。注意它不是指针。
+	Node<T> empty_list_h;			//空链表头，表头本身不计入表长，不用作数据记录。注意它不是指针。
+	Node<T> full_list_h;			//满链表头，表头本身不计入表长，不用作数据记录。注意它不是指针。
 	int m_size;
 	int m_volumn;
 
